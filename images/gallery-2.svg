@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="460" viewBox="0 0 700 460">
+  <rect width="700" height="460" rx="28" fill="#ccfbf1"/>
+  <rect x="70" y="80" width="560" height="300" rx="24" fill="#0f172a"/>
+  <text x="110" y="155" font-family="Consolas, monospace" font-size="30" fill="#ffffff">Result Output</text>
+  <text x="110" y="220" font-family="Consolas, monospace" font-size="26" fill="#2dd4bf">&gt; Compile Success</text>
+  <text x="110" y="275" font-family="Consolas, monospace" font-size="26" fill="#93c5fd">&gt; Score: 100</text>
+  <text x="110" y="330" font-family="Consolas, monospace" font-size="26" fill="#c4b5fd">&gt; Assignment Done</text>
+</svg>
