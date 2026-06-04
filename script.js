@@ -6,6 +6,7 @@
 // - Home 슬로건 변경
 // - 맨 위로 이동 버튼
 // - Contact 폼 확인 메시지
+// - 실습 하위 페이지에서 Practice 메뉴 활성화
 // =============================================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -18,10 +19,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // 현재 페이지와 같은 nav 링크에 active 클래스를 추가합니다.
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".nav-links a");
+  const practicePages = [
+    "practice.html",
+    "dday.html",
+    "random.html",
+    "dom_style.html",
+    "dom_list.html",
+    "event_order.html",
+    "event_car.html"
+  ];
 
   navLinks.forEach(function (link) {
     const linkPage = link.getAttribute("href");
-    if (linkPage === currentPage) {
+    if (linkPage === currentPage || (linkPage === "practice.html" && practicePages.includes(currentPage))) {
       link.classList.add("active");
     }
   });
@@ -43,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "정보보안에 관심 있는 컴퓨터정보공학부 대학생입니다.",
     "배운 것을 직접 구현하며 성장하는 개발자를 꿈꿉니다.",
     "안전하고 편리한 웹 서비스를 만드는 것이 목표입니다.",
-    "작은 프로젝트부터 꾸준히 완성해 나가겠습니다."
+    "작은 프로젝트부터 꾸준히 완성해 나가겠습니다.",
+    "JavaScript 실습을 포트폴리오로 확장하고 있습니다."
   ];
   let sloganIndex = 0;
 

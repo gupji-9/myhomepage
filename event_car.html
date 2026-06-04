@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>키보드 자동차 | 구현민</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">HM Portfolio</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <h1>키보드 자동차</h1>
+    <p>방향키 입력 이벤트를 이용해 자동차를 움직입니다.</p>
+  </header>
+
+  <main class="container">
+    <section class="card lab-panel">
+      <h2>실습 2: 키보드 자동차</h2>
+      <p class="section-desc"><a class="text-link" href="practice.html">← 실습 목록으로 돌아가기</a></p>
+      <p>아래 운전 영역을 클릭한 뒤 방향키(←, ↑, →, ↓)를 눌러 자동차를 움직여 보세요. 자동차는 영역 밖으로 나가지 않도록 제한했습니다.</p>
+      <div id="driveArea" class="drive-area" tabindex="0" aria-label="키보드 자동차 운전 영역">
+        <div id="car" class="car">Car</div>
+        <div id="info" class="drive-info">현재 좌표 (x, y) = (100, 100)</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var x = 100;
+    var y = 100;
+    var step = 10;
+
+    window.addEventListener("load", function () {
+      var area = document.getElementById("driveArea");
+      var car = document.getElementById("car");
+      var info = document.getElementById("info");
+      area.focus();
+
+      function moveCar(e) {
+        if (![37, 38, 39, 40].includes(e.keyCode)) {
+          return;
+        }
+        e.preventDefault();
+
+        var nextX = x;
+        var nextY = y;
+        if (e.keyCode === 37) nextX -= step;
+        if (e.keyCode === 38) nextY -= step;
+        if (e.keyCode === 39) nextX += step;
+        if (e.keyCode === 40) nextY += step;
+
+        var maxX = area.clientWidth - car.offsetWidth;
+        var maxY = area.clientHeight - car.offsetHeight;
+        x = Math.max(0, Math.min(nextX, maxX));
+        y = Math.max(0, Math.min(nextY, maxY));
+
+        car.style.left = x + "px";
+        car.style.top = y + "px";
+        info.innerHTML = "현재 좌표 (x, y) = (" + x + ", " + y + ")";
+      }
+
+      document.addEventListener("keydown", moveCar);
+      car.style.left = x + "px";
+      car.style.top = y + "px";
+    });
+  </script>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 구현민. All Rights Reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" type="button" aria-label="맨 위로 이동">↑</button>
+  <script src="script.js"></script>
+</body>
+
+</html>

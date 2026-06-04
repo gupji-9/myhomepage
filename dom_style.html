@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM 스타일 변환기 | 구현민</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">HM Portfolio</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <h1>DOM 스타일 변환기</h1>
+    <p>DOM 객체의 style 프로퍼티를 제어해 화면 스타일을 변경합니다.</p>
+  </header>
+
+  <main class="container">
+    <section class="card lab-panel dom-center">
+      <h2>실습 1: DOM 스타일 제어하기</h2>
+      <p class="section-desc"><a class="text-link" href="practice.html">← 실습 목록으로 돌아가기</a></p>
+      <p id="target" class="target-box">이 문장의 스타일을 바꿔보세요!</p>
+      <div class="btn-group">
+        <button class="primary-btn" onclick="changeColor()" type="button">글자색 변경</button>
+        <button class="primary-btn" onclick="changeSize()" type="button">크게 보기</button>
+        <button class="primary-btn" onclick="changeBackground()" type="button">배경 강조</button>
+        <button class="primary-btn" onclick="toggleVisibility()" type="button">숨기기/보이기</button>
+        <button class="secondary-btn" onclick="resetTargetStyle()" type="button">초기화</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function changeColor() {
+      var obj = document.getElementById("target");
+      obj.style.color = "red";
+    }
+
+    function changeSize() {
+      var obj = document.getElementById("target");
+      obj.style.fontSize = "32px";
+    }
+
+    function changeBackground() {
+      var obj = document.getElementById("target");
+      obj.style.backgroundColor = "yellow";
+    }
+
+    function toggleVisibility() {
+      var obj = document.getElementById("target");
+      if (obj.style.display === "none") {
+        obj.style.display = "block";
+      } else {
+        obj.style.display = "none";
+      }
+    }
+
+    function resetTargetStyle() {
+      var obj = document.getElementById("target");
+      obj.removeAttribute("style");
+    }
+  </script>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 구현민. All Rights Reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" type="button" aria-label="맨 위로 이동">↑</button>
+  <script src="script.js"></script>
+</body>
+
+</html>

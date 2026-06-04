@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-Day 계산기 | 구현민</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">HM Portfolio</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <h1>D-Day 계산기</h1>
+    <p>Date 객체를 사용해 목표 날짜까지 남은 일수를 계산합니다.</p>
+  </header>
+
+  <main class="container">
+    <section class="card lab-panel">
+      <h2>Date 객체 활용: D-Day 계산기</h2>
+      <p class="section-desc"><a class="text-link" href="practice.html">← 실습 목록으로 돌아가기</a></p>
+      <p>페이지가 열리면 목표 연도, 월, 일을 입력받고 오늘 날짜와 비교해 D-Day를 출력합니다.</p>
+      <script>
+        // 1. 오늘 날짜 객체 생성
+        let now = new Date();
+
+        // 2. prompt()로 사용자에게 연, 월, 일 입력받기
+        let year = prompt("목표 연도를 입력하세요 (예: 2026)", "2026");
+        let month = prompt("목표 월을 입력하세요 (1~12)", "12");
+        let day = prompt("목표 일을 입력하세요 (1~31)", "25");
+
+        if (!year || !month || !day) {
+          document.write('<div class="result-box"><h3>D-Day 계산을 취소했습니다.</h3><p>새로고침하면 다시 입력할 수 있습니다.</p></div>');
+        } else {
+          let yearNum = parseInt(year);
+          let monthNum = parseInt(month);
+          let dayNum = parseInt(day);
+
+          if (isNaN(yearNum) || isNaN(monthNum) || isNaN(dayNum) || monthNum < 1 || monthNum > 12 || dayNum < 1 || dayNum > 31) {
+            document.write('<div class="result-box"><h3>날짜 입력값이 올바르지 않습니다.</h3><p>새로고침 후 연, 월, 일을 숫자로 다시 입력해 주세요.</p></div>');
+          } else {
+            let targetDate = new Date(yearNum, monthNum - 1, dayNum);
+            let diffMs = targetDate.getTime() - now.getTime();
+            let diffDay = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+            let resultText = "";
+
+            if (diffDay === 0) {
+              resultText = "D-Day 입니다!";
+            } else if (diffDay > 0) {
+              resultText = "D-" + diffDay + "일 남았습니다.";
+            } else {
+              resultText = "D+" + Math.abs(diffDay) + "일 지났습니다.";
+            }
+
+            document.write('<div class="result-box"><h3>목표 날짜: ' + targetDate.toLocaleDateString() + '</h3><h2>' + resultText + '</h2><p>오늘 날짜: ' + now.toLocaleDateString() + '</p><p><i>새로고침(F5)을 눌러 다시 계산할 수 있습니다.</i></p></div>');
+          }
+        }
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 구현민. All Rights Reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" type="button" aria-label="맨 위로 이동">↑</button>
+  <script src="script.js"></script>
+</body>
+
+</html>

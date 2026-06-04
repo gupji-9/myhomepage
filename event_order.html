@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>스마트 피자 주문서 | 구현민</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">HM Portfolio</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <h1>스마트 피자 주문서</h1>
+    <p>사용자의 입력과 폼 이벤트에 따라 주문 금액을 실시간 계산합니다.</p>
+  </header>
+
+  <main class="container">
+    <section class="card lab-panel">
+      <h2>피자 주문서 (이벤트 활용)</h2>
+      <p class="section-desc"><a class="text-link" href="practice.html">← 실습 목록으로 돌아가기</a></p>
+      <form action="#" class="order-form" onsubmit="return validateOrder(event)">
+        <div id="menu_box" class="menu-box">
+          <h3>[메뉴 선택]</h3>
+          <label><span><input type="checkbox" class="menu-check" value="15000" onchange="recalc()"> 콤비네이션 피자 (15,000원)</span><input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개</label>
+          <label><span><input type="checkbox" class="menu-check" value="12000" onchange="recalc()"> 페퍼로니 피자 (12,000원)</span><input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개</label>
+          <label><span><input type="checkbox" class="menu-check" value="2000" onchange="recalc()"> 치즈 토핑 추가 (2,000원)</span><input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개</label>
+          <label><span><input type="checkbox" class="menu-check" value="1500" onchange="recalc()"> 콜라 1.25L (1,500원)</span><input type="number" class="menu-qty" value="1" min="1" onchange="recalc()" onkeyup="recalc()"> 개</label>
+        </div>
+
+        <label class="form-row" for="addr"><strong>배달 주소</strong><input type="text" id="addr" onblur="checkAddress()" placeholder="주소를 입력하세요"></label>
+        <label class="form-row" for="total"><strong>주문 합계</strong><span><input type="text" id="total" value="0" readonly> 원</span></label>
+        <div class="btn-group left">
+          <button class="primary-btn" type="submit">주문하기</button>
+          <button class="secondary-btn" type="reset" onclick="setTimeout(recalc, 0)">초기화</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function recalc() {
+      var total = 0;
+      var checks = document.getElementsByClassName("menu-check");
+      var qtys = document.getElementsByClassName("menu-qty");
+
+      for (var i = 0; i < checks.length; i++) {
+        if (checks[i].checked) {
+          var price = parseInt(checks[i].value);
+          var quantity = parseInt(qtys[i].value);
+          if (isNaN(quantity) || quantity < 1) {
+            quantity = 1;
+            qtys[i].value = 1;
+          }
+          total += price * quantity;
+        }
+      }
+      document.getElementById("total").value = total;
+    }
+
+    function checkAddress() {
+      var addr = document.getElementById("addr");
+      if (addr.value.trim() == "") {
+        alert("배달 받으실 주소를 반드시 입력해주세요!");
+        setTimeout(function () { addr.focus(); }, 0);
+      }
+    }
+
+    function validateOrder(e) {
+      var total = parseInt(document.getElementById("total").value);
+      if (total == 0) {
+        alert("상품을 적어도 하나는 선택해야 주문 가능합니다.");
+        e.preventDefault();
+        return false;
+      }
+      alert("주문이 완료되었습니다! (총 결제금액: " + total.toLocaleString() + "원)");
+      e.preventDefault();
+      return false;
+    }
+  </script>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 구현민. All Rights Reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" type="button" aria-label="맨 위로 이동">↑</button>
+  <script src="script.js"></script>
+</body>
+
+</html>

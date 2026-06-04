@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="700" height="460" viewBox="0 0 700 460">
-  <rect width="700" height="460" rx="28" fill="#dbeafe"/>
-  <rect x="60" y="60" width="580" height="340" rx="24" fill="#fff"/>
-  <rect x="95" y="95" width="510" height="56" rx="18" fill="#2563eb"/>
-  <rect x="95" y="185" width="230" height="170" rx="20" fill="#93c5fd"/>
-  <rect x="355" y="185" width="250" height="70" rx="18" fill="#2dd4bf"/>
-  <rect x="355" y="285" width="250" height="70" rx="18" fill="#c4b5fd"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2563eb"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient></defs>
+  <rect width="800" height="500" rx="36" fill="url(#g)"/>
+  <circle cx="680" cy="90" r="90" fill="rgba(255,255,255,0.16)"/>
+  <circle cx="110" cy="420" r="120" fill="rgba(255,255,255,0.12)"/>
+  <text x="400" y="220" text-anchor="middle" font-size="84" font-family="Segoe UI Emoji, Apple Color Emoji, sans-serif">🧩</text>
+  <text x="400" y="310" text-anchor="middle" font-size="42" font-weight="800" fill="white" font-family="Segoe UI, Noto Sans KR, Arial, sans-serif">Layout Practice</text>
 </svg>

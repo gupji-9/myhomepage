@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>랜덤 뽑기 | 구현민</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html">HM Portfolio</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="practice.html">Practice</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="sub-hero">
+    <h1>랜덤 뽑기</h1>
+    <p>String, Array, Math 객체를 조합해 항목 중 하나를 무작위로 선택합니다.</p>
+  </header>
+
+  <main class="container">
+    <section class="card lab-panel">
+      <h2>String + Array + Math 조합: 내맘대로 뽑기</h2>
+      <p class="section-desc"><a class="text-link" href="practice.html">← 실습 목록으로 돌아가기</a></p>
+      <p>콤마(,)로 구분한 문자열을 배열로 변환한 뒤, 랜덤 인덱스를 생성하여 결과를 출력합니다.</p>
+      <script>
+        // 1. String: prompt()로 사용자에게 문자열 입력받기
+        let defaultList = "제육볶음,돈까스,순대국,김치찌개,햄버거,초밥,파스타,샐러드,떡볶이,마라탕,사과,바나나,딸기,수박";
+        let inputString = prompt("항목을 콤마(,)로 구분하여 입력하세요", defaultList);
+
+        function escapeHTML(text) {
+          return text.replace(/[&<>"']/g, function (ch) {
+            return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+          });
+        }
+
+        if (!inputString) {
+          document.write('<div class="result-box"><h3>뽑기를 취소했습니다.</h3><p>새로고침하면 다시 입력할 수 있습니다.</p></div>');
+        } else {
+          let items = inputString.split(',').map(function(item) { return item.trim(); }).filter(function(item) { return item.length > 0; });
+
+          if (items.length === 0) {
+            document.write('<div class="result-box"><h3>뽑을 항목이 없습니다.</h3><p>새로고침 후 다시 입력해 주세요.</p></div>');
+          } else {
+            let index = Math.floor(Math.random() * items.length);
+            let choice = items[index];
+            document.write('<div class="result-box"><h3>입력한 항목: 총 ' + items.length + '개</h3><p>' + escapeHTML(items.join(', ')) + '</p><hr><h3>당신의 선택은...</h3><h2>' + escapeHTML(choice) + ' !!!!</h2><p><i>새로고침(F5)을 눌러 다시 뽑을 수 있습니다.</i></p></div>');
+          }
+        }
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> 구현민. All Rights Reserved.</p>
+  </footer>
+
+  <button id="topBtn" class="top-btn" type="button" aria-label="맨 위로 이동">↑</button>
+  <script src="script.js"></script>
+</body>
+
+</html>
