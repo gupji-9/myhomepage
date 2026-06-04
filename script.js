@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
     "dom_style.html",
     "dom_list.html",
     "event_order.html",
-    "event_car.html"
+    "event_car.html",
   ];
 
   navLinks.forEach(function (link) {
     const linkPage = link.getAttribute("href");
-    if (linkPage === currentPage || (linkPage === "practice.html" && practicePages.includes(currentPage))) {
+    if (
+      linkPage === currentPage ||
+      (linkPage === "practice.html" && practicePages.includes(currentPage))
+    ) {
       link.classList.add("active");
     }
   });
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "배운 것을 직접 구현하며 성장하는 개발자를 꿈꿉니다.",
     "안전하고 편리한 웹 서비스를 만드는 것이 목표입니다.",
     "작은 프로젝트부터 꾸준히 완성해 나가겠습니다.",
-    "JavaScript 실습을 포트폴리오로 확장하고 있습니다."
+    "JavaScript 실습을 포트폴리오로 확장하고 있습니다.",
   ];
   let sloganIndex = 0;
 
@@ -89,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactForm && formResult) {
     contactForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      formResult.textContent = "메시지가 입력되었습니다. 실제 전송 기능은 서버 연결 후 추가할 수 있습니다.";
+      formResult.textContent =
+        "메시지가 입력되었습니다. 실제 전송 기능은 서버 연결 후 추가할 수 있습니다.";
       contactForm.reset();
     });
   }
